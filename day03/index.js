@@ -1,13 +1,14 @@
 /**
  * Dependencies
  */
-const fs = require('fs');
-const path = require('path');
+const { readFile, isPositiveInteger } = require('../helpers.js');
 
-function isPositiveInteger(n) {
-    return n >>> 0 === parseFloat(n);
-}
-
+/**
+ * Check mul command
+ * @param {string} file - The file content.
+ * @param {number} cursor - The cursor position.
+ * @return {Array} - The new cursor position and the mul command.
+ */
 function checkMul (file, cursor) {
     if (file[cursor] !== 'm') {
         return [ cursor, null ];
@@ -51,8 +52,11 @@ function checkMul (file, cursor) {
     return [ cursor, commands ];
 }
 
-
-
+/**
+ * Get mul commands
+ * @param {string} file - The file content.
+ * @return {Array} - The mul commands.
+ */
 function getMULCommands(file) {
     let commands = [];
     // Loop through the string
@@ -71,6 +75,11 @@ function getMULCommands(file) {
     return commands;
 }
 
+/**
+ * Calculate mul total
+ * @param {Array} commands - The commands.
+ * @return {number} - The total.
+ */
 function calculateMULTotal(commands) {
     let total = 0;
 
@@ -92,7 +101,7 @@ function calculateMULTotal(commands) {
 /**
  * Solution
  */
-const file = fs.readFileSync(path.resolve(__dirname, 'input'), 'utf8');
+const file = readFile('day03/input');
 
 const commands = getMULCommands(file);
 const total = calculateMULTotal(commands); // 174336360

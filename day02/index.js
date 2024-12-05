@@ -1,8 +1,7 @@
 /**
  * Dependencies
  */
-const fs = require('fs');
-const path = require('path');
+const { readFile } = require('../helpers.js');
 
 /**
  * Gets a text file with text values separated by new lines.
@@ -155,7 +154,7 @@ function getAmountOfSafeReports(reports) {
 /**
  * Solution
  */
-const file = fs.readFileSync(path.resolve(__dirname, 'input'), 'utf8');
+const file = readFile('day02/input');
 const reports = getReportsFromFile(file);
 
 console.log("The amount of safe reports is: ", getAmountOfSafeReports(reports));

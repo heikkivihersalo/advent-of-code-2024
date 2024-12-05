@@ -1,8 +1,7 @@
 /**
  * Dependencies
  */
-const fs = require('fs');
-const path = require('path');
+const { readFile } = require('../helpers.js');
 
 /**
  * Gets a text file with values in format of 67669   20743 and rows separated by new lines.
@@ -69,7 +68,7 @@ function calculateSimilarityScore(list1, list2) {
 /**
  * Solution
  */
-const file = fs.readFileSync(path.resolve(__dirname, 'input'), 'utf8');
+const file = readFile('day01/input');
 const { list1, list2 } = splitValuesFromFile(file);
 
 /**
